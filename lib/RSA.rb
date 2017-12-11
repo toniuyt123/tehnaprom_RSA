@@ -47,27 +47,25 @@ class RSA
 		end
 		keys[2] = d			
 
-		p n,e,d
+		#p n,e,d
 
 		return keys
 	end
 
 	def encrypt message
 		message.each_byte do |c|
-			c = (c**@e) % @n
-			p c
-			p c.chr
+			#c = (c**@e) % @n
+			#p c
+			#p c.chr
 		end
 	end
 
 	def decrypt message
 	 	message.each_byte do |c|
-			c = (c**@d) % @n
-			p c.chr
+			#c = (c**@d) % @n
+			#p c.chr
 		end
 	end 
 end
 
 r = RSA.new(2231, 181, 1021)
-r.new_key
-r.encrypt("abc")
