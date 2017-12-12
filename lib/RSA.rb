@@ -21,7 +21,7 @@ class RSA
 
 	def new_key
 		keys = Array.new
-		range = 50
+		range = 40
 		p = rand(range)
 		q = rand(range)
 		while !Prime.prime?(p)
@@ -47,25 +47,35 @@ class RSA
 		end
 		keys[2] = d			
 
-		#p n,e,d
+		p n,e,d
 
 		return keys
 	end
 
 	def encrypt message
+		crypt = Array.new
+		index = 0
 		message.each_byte do |c|
-			#c = (c**@e) % @n
-			#p c
-			#p c.chr
+			c = (c.ord ** @e) % @n
+			crypt[index] = c
+			index = index + 1
 		end
+
+		return crypt
 	end
 
 	def decrypt message
-	 	message.each_byte do |c|
-			#c = (c**@d) % @n
-			#p c.chr
+	 	message.each do |c|
+			c = ( c.ord ** @d) % @n
+			p c
 		end
 	end 
 end
 
-r = RSA.new(2231, 181, 1021)
+r = RSA.new(187, 17, 33)
+r.new_key
+p "Encrypt"
+msg = r.encrypt("!")
+p "Decrypt"
+r.decrypt(msg)
+
