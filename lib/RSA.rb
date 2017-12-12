@@ -53,19 +53,19 @@ class RSA
 	end
 
 	def encrypt message
-		return message.chars.map {|c| c.ord ** @e % @n}
+		return (message.chars.map {|c| c.ord ** @e % @n}).join(",")
 	end
 
 	def decrypt message
-	 	return (message.map {|c| (c ** @d % @n).chr}).join("")
+	 	return (message.split(",").map {|c| (c.to_i ** @d % @n).chr}).join("")
 	end 
 end
 
-#r = RSA.new(2231, 181, 1021)
+r = RSA.new(2231, 181, 1021)
 #r.new_key
 #puts "Encrypt"
 #msg = String.new("abc")
-#puts r.encrypt("HEllo")
+secret = r.encrypt("HEllo")
 #puts "Decrypt"
-#msg = r.decrypt(secret)
-#puts msg
+msg = r.decrypt(secret)
+puts msg
