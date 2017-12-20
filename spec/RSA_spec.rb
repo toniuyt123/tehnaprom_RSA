@@ -1,3 +1,5 @@
+require 'simplecov'
+SimpleCov.start
 require_relative '../lib/RSA.rb'
 
 RSpec.describe RSA do
@@ -23,7 +25,7 @@ RSpec.describe RSA do
 	
 	context "crypt/decrypt tests" do
 		it "checks if crypt changes message to right numbers" do
-			expect(rsa.encrypt("abc")).to eq([388, 1359, 247])
+			expect(rsa.encrypt("abc")).to eq("388,1359,247")
 		end
 
 		it "checks if crypt/decrypt works" do
